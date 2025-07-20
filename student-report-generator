@@ -1,0 +1,32 @@
+# Student data
+$students = @(
+    @{ Name = "Asha"; Marks = @(85, 90, 88) },
+    @{ Name = "Raj"; Marks = @(72, 68, 70) },
+    @{ Name = "Hrushikesh"; Marks = @(95, 98, 92) }
+)
+
+# Loop through students
+foreach ($student in $students) {
+    $name = $student.Name
+    $marks = $student.Marks
+    $total = ($marks | Measure-Object -Sum).Sum
+    $avg = [math]::Round($total / $marks.Count, 2)
+
+    # Grade logic
+    if ($avg -ge 90) {
+        $grade = "A"
+    } elseif ($avg -ge 75) {
+        $grade = "B"
+    } elseif ($avg -ge 60) {
+        $grade = "C"
+    } else {
+        $grade = "F"
+    }
+
+    # Output report
+    Write-Output "`n--- Report for $name ---"
+    Write-Output "Marks: $($marks -join ', ')"
+    Write-Output "Total: $total"
+    Write-Output "Average: $avg"
+    Write-Output "Grade: $grade"
+}
