@@ -139,3 +139,250 @@ $student.name
 $student["name"]
 #adding new key-value pair
 $student.city = "pune"
+
+#DAY 2
+#if else conditions
+#using operators we perform conditions
+$score = 56
+if($score -gt 50){
+  "Excellent!"
+}
+<#Excellent#>
+ 
+$age= 23
+$citizen= $true
+if($age -ge 18 -and $citizen){
+  "Eligible to vote"
+}
+else{
+  "Not eligible"
+}
+<#Eligible to vote#>
+ 
+$day = "Wednesday"
+switch ($day) {
+  "Monday" {"Start of the day"}
+  "wednesday" {"rest day"}
+  Default {"future"}
+}
+<#rest day#>
+ 
+ 
+#Loops foreach, for, while, do-while, do-until.
+$tools= @("powershell", "azure", "graph")
+foreach($tool in $tools){
+  "Learning: $tool"
+}
+<#
+Learning: powershell
+Learning: azure
+Learning: graph
+#>
+ 
+for($i=0;$i -le 5; $i++){
+  "Iteration $i"
+}
+<#
+Iteration 0
+Iteration 1
+Iteration 2
+Iteration 3
+Iteration 4
+Iteration 5
+#>
+ 
+$count=5
+while ($count -ge 0) {
+  "$count"
+  $count--
+}
+<#
+5
+4
+3
+2
+1
+0
+#>
+ 
+$num=1
+do {
+  $num
+  $num++
+} while (
+  <# Condition that stops the loop if it returns false #>
+  $num -le 5
+)
+<#
+1
+2
+3
+4
+5
+#>
+ 
+#do-until is opposote of do-while
+$x=1
+do {
+  $x
+  $x++
+} until (
+  <# Condition that stops the loop if it returns true #>
+  $x -gt 7
+)
+<#
+1
+2
+3
+4
+5
+6
+7
+#>
+ 
+#functions= A names block of code that you can run multiple times, pass values to, and reuse anywhere
+function say-hello {
+  "Hello, powershell!"
+}
+ 
+say-hello
+ 
+#functions with parameters
+function Greet-user{
+  param($name)
+  "Hello, $name!"
+}
+ 
+Greet-user "Hrushi"
+ 
+#function with multiple parameters
+function sum(){
+  param($a, $b)
+  $a=$a+$b
+  "$a"
+}
+ 
+sum 4 4
+ 
+#typed parameters and default vaules
+function multiply-number{
+  param(
+    [int]$x=2,
+    [int]$y=4
+  )
+  "result: $($x* $y)"
+}
+ 
+multiply-number 2 5
+ 
+#return values
+function sqaure{
+  param([int]$s=2)
+  return $s*$s
+}
+ 
+"$(sqaure 5)"
+ 
+ 
+#Error Handling
+$ErrorActionPreference="Stop" #powershell by default not treat all errors as "serious enough" to stop the script and go into catch block. this type of error(file not found) is called non-terminating error, which means powershell says i'will show the error but it wpint stop the script unless you tell it.
+#so change the erroraction preference to stop to tell powershell to stop right away if any error happens
+try{
+  Get-Content "/hashicrop.txt"
+}
+catch{
+  $response=$($_.Exception.Message)
+}
+ 
+$response
+ 
+#finally block
+try{
+  Get-Content "/hashicrop.txt"
+}
+catch{
+  $response=$_.Exception.Message
+}
+finally{
+  "script executed successfully!"
+}
+$response
+<#
+script executed successfully!
+Cannot find path '/hashicrop.txt' because it does not exist.
+#>
+ 
+ 
+ 
+#folders
+$ErrorActionPreference="Stop"
+$path = "/hasicrop.txt"
+ 
+if(test-path $path){
+ 
+}
+else{
+  try{
+    New-Item -Path $path -ItemType File
+    $message= "log file created on $(Get-Date)"
+    Set-Content -Path $path -Value $message
+  }
+  catch{
+    "cannot create file $($_.Exception.Message)"
+  }
+}
+ 
+ 
+#to get date
+Get-Date -Format "yyyy-mm-dd"
+ 
+ 
+#files and folders advanced level
+#get all items in the current directory
+Get-ChildItem
+#get only files
+Get-ChildItem -File
+#get only folders
+Get-ChildItem -Directory
+ 
+#list everything recursively
+Get-ChildItem -Recurse
+#list only txt files in current directory
+Get-ChildItem -Filter *.txt
+#list only txt files in specific folder
+Get-ChildItem -Path "./" -Filter *.txt
+ 
+#copy a file to another location
+Copy-Item -Path "source location" -Destination "destination path"
+#copy entire folder recursively
+Copy-Item -Path "source_path" -Destination "dest path" -Recurse
+ 
+#move files
+Move-Item -Path "Source_path" -Destination "Dest_path"
+ 
+#deleting files
+Remove-Item -Path "Source_path"
+#deleting the folder recursively
+Remove-Item -Path "Source_path" -Recurse
+ 
+#filtering files
+#filtering files that have length greater than 1MB
+Get-ChildItem -Recurse | Where-Object {$_.Length -gt 1MB}
+#list only .txt files modified in last 7 days
+Get-ChildItem -Recurse -Filter *.txt | Where-Object {$_.LastWriteTime -gt (Get-Date).AddDays(-7)}
+ 
+ 
+#loops= allows you to repeat tasks-especially useful in bulk file operations, user management, automation scripts, etc.,
+#for loop= best when you know how many times to run
+#foreach= best when you have to run through the collection
+#Bulk rename .txt files
+$path= "./"
+$count=1
+foreach($file in Get-ChildItem -Path $path -Filter *.txt){
+    Rename-Item -Path $file -NewName "Renamed_File $($count).txt"
+    $count++
+}
+ 
+ 
+#create a folder in the current directory
+New-Item -Path "./" -ItemType Directory -Name "Paathal.txt"
