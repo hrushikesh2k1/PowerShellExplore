@@ -1,0 +1,17 @@
+<#CHALLANGE3#>
+<#
+1. create a folder called practice
+2. inside that, create 10 text files named file1.txt to file10.txt
+#>
+ 
+$path= "./" #takes the current directory path
+$count=1 #for naming files
+New-Item -Path $path -ItemType Directory -Name "practice" #creating the folder named practice
+for($i=0; $i -lt 10; $i++){
+    New-Item -Path "./practice" -ItemType File -Name "File$count.txt"
+    $count++
+}
+ 
+foreach($file in Get-ChildItem -Path "./practice"){
+    "$($file)"
+}
