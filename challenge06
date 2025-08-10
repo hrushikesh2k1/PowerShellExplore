@@ -1,0 +1,24 @@
+#challenge06
+'''
+write a powershell script that
+1. Asks the user for a starting number and an ending number.
+2. Calculates separately the sum of all even numbers and all odd numbers in the range.
+3. Siaplys both sums
+'''
+ 
+$start = [int](Read-Host "Enter start")
+$end = [int](Read-Host "Enter end")
+ 
+$evenSum=0
+$oddSum=0
+for($i=$start; $i -le $end; $i++){
+    if($i%2 -eq 0){
+        $evenSum+=$i
+    }
+    else{
+        $oddSum+=$i
+    }
+}
+ 
+Write-Host "Even number sum; $evenSum"
+Write-Host "Even number odd; $oddSum"
