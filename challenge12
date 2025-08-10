@@ -1,0 +1,11 @@
+#challenge12
+'''
+Write a powershell Script that
+1. Retrieves all users
+2. Formats the output to show only DisaplyName, Userprincipalname, and Id in a clean table
+'''
+ 
+ 
+Connect-MgGraph
+#here Id field is hidden property, so we have to explicitely request it.
+Get-MgUser -Property DisplayName, Id, UserPrincipalName | Select-Object -Property DisplayName, Id, UserPrincipalName | Format-Table -AutoSize
