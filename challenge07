@@ -1,0 +1,21 @@
+#challenge07
+'''
+write a powershell script that
+1. Asks the user to enter a series of numbers seperarted by commas.
+2. stores them in an array
+3. Finds and prints the largest number.
+'''
+ 
+$inputnumbers = Read-Host "Enter numbers"
+$numbers = $inputnumbers -split "," | ForEach-Object {([int]$_)}
+ 
+$largest =  $numbers[0]
+ 
+foreach($num in $numbers){
+    if($num -ge $largest){
+        $largest = $num
+    }
+}
+ 
+ 
+$largest
