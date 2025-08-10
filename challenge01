@@ -1,0 +1,15 @@
+#Challenge01
+'''
+Write a Powershell script to 
+1. store you name, age and city in variables
+2. Prints a message in the format 
+    Hello, my name is <name>. I am <age> years old and live in <city>
+'''
+ 
+$name="Hrushikesh"
+$city= "Hanamkonda"
+$age= 23
+ 
+#Single quotes--->no variable expansion
+'Hello, my name is $($name). I am $($age) years old and live in $($city).' 
+"Hello, my name is $($name). I am $($age) years old and live in $($city)." #double quotes expand the variables
