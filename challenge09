@@ -1,0 +1,32 @@
+#challenge09
+'''
+Write a powershell script that
+1 Takes a list of numbers from the user.
+2. seperates them into even and odd
+3. displays them as two seperate lists
+'''
+ 
+$inputnumbers = Read-Host "Enter numbers"
+$numbers = $inputnumbers -split ',' | Where-Object {[int]$_}
+$even=@()
+$odd=@()
+foreach($num in $numbers){
+    if($num % 2 -eq 0){
+        $even+=$num
+    }
+    else{
+        $odd+=$num
+    }
+}
+if($even.Count -gt 0){
+    Write-Host "Even numbers are $($even -join ',')"
+}
+Write-Host "odd numbers are $($odd -join ',')"
+ 
+ 
+#method2
+$evennumbers = $numbers | Where-Object {$_ % 2 -eq 0}
+$oddnumbers = $numbers | Where-Object {$_ % 2 -ne 0}
+ 
+Write-Host "Even: $($evennumbers -join ',')"
+Write-Host "Odd: $($oddnumbers -join ',')"
