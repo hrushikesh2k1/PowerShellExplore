@@ -1,0 +1,27 @@
+#challenge10
+'''
+Write a powershell function called Get-EvenOddNumbers that
+1. Accepts a parameter $numbers (an array of integers)
+2. Prints the even and odd numbers seperately.
+3. if no numbers are passed, it should prompt the user to enter them.
+'''
+ 
+Function Get-EvenOddNumbers{
+   param($my_array)
+ 
+   if(-not $my_array){
+    $my_array = Read-Host "enter numbers"
+    $my_array = $my_array -split "," | Where-Object {[int]$_}
+   }
+   $even= $my_array | Where-Object {$_ %2 -eq 0}
+   $odd = $my_array | Where-Object {$_ %2 -ne 0}
+   Write-Host "Even numbers: $($even -join ',')"
+   Write-Host "Odd numbers: $($odd -join ',')"
+   $sum = ($my_array | Measure-Object -Sum).Sum
+   $sum
+}
+ 
+ 
+Get-EvenOddNumbers('1','2','3','4')
+#Powershell implicitelt converts strings to int when you perfoem mathematical
+#operation on them
