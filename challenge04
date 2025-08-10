@@ -1,0 +1,26 @@
+#challenge04
+'''
+write a powershell script that
+1. prompts the user to enter three numbers
+2. stores them in variables
+3. calculates and displays:
+    the sum of the numbers
+    avg of numbers
+    largest number
+    smallest number
+'''
+ 
+$a = [int](Read-Host "Enter number")
+$b = [int](Read-Host "Enter number")
+$c = [int](Read-Host "Enter number")
+ 
+$numbers = @($a, $b, $c)
+$sum = ($numbers | Measure-Object -Sum).Sum
+$avg = ($numbers | Measure-Object -Average).Average
+$Largest = ($numbers | Measure-Object -Maximum).Maximum
+$smallest = ($numbers | Measure-Object -Minimum).Minimum
+ 
+Write-Output "Sum: $sum"
+Write-Output "Avg: $avg"
+Write-Output "Maximum: $Largest"
+Write-Output "Smallest: $smallest"
