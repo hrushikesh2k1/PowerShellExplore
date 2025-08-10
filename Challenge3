@@ -1,17 +1,18 @@
-<#CHALLANGE3#>
-<#
-1. create a folder called practice
-2. inside that, create 10 text files named file1.txt to file10.txt
-#>
+#challenge03
+'''
+write a powershell script that
+1. prompts the user to enter their name and age.
+2. if the user"s age is 18 or above, print: Hello <name>, you are eligible to vote.
+3. if the user"s age isbelow 18, print: Hello <name>, you are not eligible to vote yet.
+'''
+$name = Read-Host "Enter the name"
+$age = [int](Read-Host "Enter your age")
  
-$path= "./" #takes the current directory path
-$count=1 #for naming files
-New-Item -Path $path -ItemType Directory -Name "practice" #creating the folder named practice
-for($i=0; $i -lt 10; $i++){
-    New-Item -Path "./practice" -ItemType File -Name "File$count.txt"
-    $count++
+ 
+if($age -ge 18){
+    Write-Output "Hello $name, you are eligible to vote"
 }
- 
-foreach($file in Get-ChildItem -Path "./practice"){
-    "$($file)"
+else{
+    Write-Output "Hello $name, you are not eligible to vote."
+        
 }
