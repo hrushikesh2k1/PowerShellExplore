@@ -1,0 +1,12 @@
+#challenge02
+'''
+Write a powerhsell script that
+1. Prompts the user to enter their name , age,and city.
+2. stores each input in a variable.
+3. prints the sentence.
+'''
+$name= Read-Host "Enter the name: "
+$age= Read-Host "Enter the age: "
+$city= Read-Host "Enter the city: "
+ 
+Write-Output "Hello, my name is $name. I am age $age years old and live in $city."
