@@ -1,0 +1,22 @@
+#challenge11
+'''
+Write a powershell Script that connects to Microsoft graph using Microsoft Graph powerhshell module.
+1. Install the required modue if not already present
+2. Authenticate using connect-MgGraph with appropriate permissions
+3. Display a success message upon connection
+'''
+ 
+ 
+if(-not (Get-Module -ListAvailable -Name Microsoft.Graph)){
+    Install-Module -Name Microsoft.graph -Scope CurrentUser
+    Import-Module Microsoft.Graph
+}
+ 
+try{
+    Connect-MgGraph -Scopes "User.ReadWrite.All", "Directory.ReadWrite.All" 
+    Write-Host "Connected to Microsoft Graph" -ForegroundColor Green
+}
+catch{
+    Write-Host $_.Exception
+    exit
+}
