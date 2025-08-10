@@ -1,0 +1,36 @@
+#challenge08
+'''
+write a powershell script that
+1. Asks the user for a list of numbers separated by commas.
+2. sort them in ascending order.
+3. Displays only the numbers that are greater than 50.
+'''
+ 
+$inputnumbers = Read-Host "Enter numbers"
+ 
+#method1 -------------------------------------------------------
+$greaternumbers = @() #arrays are fixed in size in powershell
+$numbers = $inputnumbers -split "," | ForEach-Object {[int]$_}
+$numbers =  $numbers | Sort-Object
+foreach($num in $numbers){
+    if($num -gt 50){
+        $greaternumbers+=$num
+    }
+}
+$greaternumbers
+ 
+#method2--------------------------------------------------------
+$greaternumbers1 = New-Object System.Collections.ArrayList
+foreach($num in $numbers){
+    if($num -gt 50){
+        $greaternumbers1.Add($num) | Out-Null
+    }
+}
+$greaternumbers1
+ 
+ 
+#method3
+$filternumbers = $numbers | Where-Object {$_ -gt 50}
+if($filternumbers.Count -gt 0){
+    Write-Host "Numbers greater than 50: $($filternumbers -join ',')"
+}
