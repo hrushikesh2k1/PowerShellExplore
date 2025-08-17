@@ -1,0 +1,14 @@
+#challenge24
+'''
+Concept of Script Block
+A script block is a anonymous function same as lambda fucntion in other programming languages.
+Typically unnamed and stored in variable
+Invoke using & (call operator) or Invoke-Command
+'''
+ 
+$scriptBlock = { Get-Process 
+                 Write-Host "==========================================="
+                 Get-service
+               }
+Invoke-Command $scriptBlock     #1 way of calling script block
+& $scriptBlock         #2 way of calling script block
