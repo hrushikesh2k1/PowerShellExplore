@@ -1,0 +1,33 @@
+#challenge26
+<#
+Comparing objects
+cmdlet is used to compare a set of objects and show the differences and similarities between them
+#>
+ 
+$a = 'apple', 'banana', 'pineapple'
+$b = 'apple', 'jack', 'lemon'
+ 
+$difference =  Compare-Object -ReferenceObject $a -DifferenceObject $b
+$difference
+ 
+#includeEqual shows the equal object also
+$diff = Compare-Object -ReferenceObject $a -DifferenceObject $b -IncludeEqual
+$diff
+ 
+$obj1= [PSCustomObject]@{occupation='IAS';name='john'; age=36}
+$obj2= [PSCustomObject]@{name= 'darren'; age =70}
+ 
+#compare two objects by properties
+Compare-Object -ReferenceObject $obj1 -DifferenceObject $obj2 -Property Occupation
+ 
+#compare two objects by all properties
+$props = $obj1.PSObject.Properties.name
+foreach($prop in $props){
+    Write-Host "$prop"
+    Compare-Object -ReferenceObject $obj1 -DifferenceObject $obj2 -Property $props | Format-Table -AutoSize
+}
+ 
+ 
+#Get all distinct property names from both the objects
+$distinctprops = ($obj1.PSObject.Properties.Name + $obj2.PSObject.Properties.Name) | Select-Object -Unique
+$distinctprops
