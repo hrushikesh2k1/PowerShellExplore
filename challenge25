@@ -1,0 +1,38 @@
+#challenge25
+<#
+Difference between hashtable and custom object
+Hash Table- it is the collection of key-value pairs designed for fast lookups
+custom object- is an object with properties, enabling object oriented approach
+#>
+$hash = @{
+    name = 'hrushi'
+    age=28
+    gender = 'male'
+}
+ 
+$obj = [PSCustomObject]@{
+    name = 'hrushikesh'
+    age = 23
+    gender = 'male'
+}
+ 
+#accessing data (properties are case-sensitive)
+$hash.Name
+$hash['name']
+ 
+$obj.name
+ 
+#Pipeline behaviour(no pipeline behaviour for hash table)
+$obj | Format-Table
+#Hashtable behave like dictonaries and show key and value pairs seperately making them harder to format as table
+ 
+ 
+#Adding and remove
+#Hash table is pretty straight forward, dynamic and flexible
+$hash.Add('occupation', 'IAS')
+$hash.Remove('gender')
+$hash['gender']= 'Male'
+ 
+$obj | Add-Member -MemberType NoteProperty -Name Occupation -Value "IAS"
+$obj.PSObject.Properties.Remove("gender")
+$obj.PSObject.Properties.Add()   #not valid
