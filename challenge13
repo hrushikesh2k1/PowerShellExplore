@@ -1,0 +1,7 @@
+#challenge13
+'''
+list all the services that are currently
+running, soreted by name
+'''
+ 
+Get-Service | Where-Object {$_.Status -eq 'Running'} | Sort-Object Name
