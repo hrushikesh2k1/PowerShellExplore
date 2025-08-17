@@ -1,0 +1,19 @@
+#challenge22
+'''
+write a function to square a number with pipeline support
+ 
+'''
+ 
+function square{
+    [CmdletBinding()]
+    param(
+        [Parameter(ValueFromPipeline=$true)]
+        [int]$num=9
+    )
+    process{
+    Write-Host "$($num*$num)"
+    }
+    
+}
+ 
+9,10,12,45,'4' | square
