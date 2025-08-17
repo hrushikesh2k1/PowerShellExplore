@@ -1,0 +1,11 @@
+#challenge20
+'''
+write a function to square a number with default values
+'''
+ 
+ 
+function square([int]$num=6){
+    Write-Host "square of given number is:$($num*$num)"
+}
+ 
+Square
