@@ -1,0 +1,6 @@
+#challenge15
+'''
+count how many .txt files are in c:\windows\system32
+'''
+ 
+(get-childitem -Path C:\Users\Boora.Hrushikesh3\Downloads -Filter *.txt -Recurse -File).count
