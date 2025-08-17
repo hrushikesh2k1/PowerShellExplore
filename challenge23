@@ -1,0 +1,35 @@
+#challenge23
+'''
+write a function to square a number with pipeline support
+ 
+'''
+ 
+function Set-color{
+    [CmdletBinding()]
+    param(
+        [ValidateSet("Red","yellow","Green")]
+        [String]$col
+    )
+    Write-Host "color set is :$col"
+}
+ 
+Set-color("Red")
+Set-color("red")#not case sensitive
+Set-color("ReD")
+Set-color("Orange") #not valid
+ 
+function set-value{
+    [CmdletBinding()]
+    param(
+        [ValidateSet(10,20,30)]
+        $num,
+        [ValidateRange(1,40)]
+        $numberRange
+    )
+    Write-Host "validateSet: $num"
+    Write-Host "Validaterange: $numberRange"
+}
+ 
+set-value -num 11 -numberRange 33 #invalid
+set-value -num 10 -numberRange 33 #valid
+set-value -num 10 -numberRange 55 #invalid
