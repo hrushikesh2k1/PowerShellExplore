@@ -1,0 +1,22 @@
+#challenge21
+'''
+write a function to square a number with default values
+'''
+'''
+[CmdletBinding()] functions turns the normal function to Advanced function
+[Parameter(mandatory=$true)] mandates to pass the parameters, if no parameter is passed, prompts for parameter
+Verbose- it is used for providing additional details in output without cluttering normal output
+'''
+ 
+function square{
+    [CmdletBinding()]
+    param(
+        [Parameter(mandatory=$true)]
+        [int]$num=9
+    )
+    Write-Verbose "Starting function for sqaure"
+    Write-Host "square of given number is:$($num*$num)"
+    
+}
+ 
+Square -Verbose
