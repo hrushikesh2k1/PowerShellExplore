@@ -1,0 +1,22 @@
+#challenge27
+<#
+Write a powershell script for
+1. Get the services running on the computer
+2. sort by cpu usage
+3. collect top 3 cpu consuming services by name
+4. create a custom object with computer name, number of running services, top 3 cpu consuming services
+5. output the result as a formatted table containing computer name, Running services count, Top processes
+#>
+ 
+$services = (Get-service | Where-Object {$_.Status -eq "Running"}).Count
+ 
+$process = Get-process | Where-Object {$_.CPU -ne $null} | Sort-Object -Property CPU -Descending | Select-Object -First 5
+ 
+$computername = $env:COMPUTERNAME
+ 
+$obj = [PSCustomObject]@{
+    computername = $computername
+    RunningProcess = $process
+    RunningServices = $services
+}
+$obj | Format-List
