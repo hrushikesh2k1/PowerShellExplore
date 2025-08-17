@@ -1,0 +1,7 @@
+#challenge16
+'''
+list all the files in C:\windows that are larger
+than 5MB
+'''
+ 
+get-childitem -Path C:\Windows -Recurse -File -ErrorAction SilentlyContinue | Where-Object {$_.Length -gt 5MB}
