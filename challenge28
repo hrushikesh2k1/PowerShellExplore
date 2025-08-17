@@ -1,0 +1,12 @@
+#challenge28
+<#
+Write a script
+1. Explore a directory
+2. Search for .txt, .xlsx files
+3. Filter for old files(less than 7 days)
+4. MOve files to another folder inside the same directory
+#>
+$source = "C:\Users\Boora.Hrushikesh3\Downloads\"
+$destination = "C:\Users\Boora.Hrushikesh3\Downloads"
+ 
+Get-childitem -Path $source | Where-Object {$_.Extension -in '.txt','.xlsx'} | Where-Object {$_.LastWriteTime -lt (get-date).AddDays(-7)} | Move-Item -Destination "C:\Users\Boora.Hrushikesh3\Downloads\Destination"
